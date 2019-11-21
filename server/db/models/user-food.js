@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 // recipes will be stored as a url to link to the same recipe
 const UserFood = db.define('recipe', {
@@ -10,6 +10,6 @@ const UserFood = db.define('recipe', {
   eatBy: {
     type: Sequelize.DATE
   }
-})
+});
 
-module.exports = UserFood
+module.exports = UserFood;
