@@ -12,7 +12,11 @@ const UserFood = db.define("user_food", {
   status: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: "wasted"
+    defaultValue: "Pending",
+    validate: {
+      notEmpty: true,
+      isIn: [["Eaten", "Thrown Away", "Pending"]]
+    }
   }
 });
 
