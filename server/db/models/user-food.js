@@ -1,14 +1,18 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-// recipes will be stored as a url to link to the same recipe
-const UserFood = db.define('recipe', {
+const UserFood = db.define("user_food", {
   startDate: {
     type: Sequelize.DATE,
     defaultValue: new Date()
   },
   eatBy: {
-    type: Sequelize.DATE
+    type: Sequelize.INTEGER
+  },
+  status: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: "wasted"
   }
 });
 

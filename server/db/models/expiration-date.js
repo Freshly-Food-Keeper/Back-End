@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const ExpirationDate = db.define('expirationDate', {
+const ExpirationDate = db.define("expiration_date", {
   Name: {
     type: Sequelize.TEXT
   },
