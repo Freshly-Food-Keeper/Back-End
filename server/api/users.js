@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Recipe } = require("../db/models");
 const { User } = require("../db/models");
 const { UserFood } = require("../db/models");
+const { Food } = require("../db/models");
 module.exports = router;
 
 router.get("/:userId/foods", async (req, res, next) => {
