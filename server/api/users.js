@@ -3,13 +3,47 @@ const { Recipe } = require("../db/models");
 const { User } = require("../db/models");
 const { UserFood } = require("../db/models");
 const { Food } = require("../db/models");
+const { ExpirationDate } = require("../db/models");
 module.exports = router;
 
+// Get all foods for a given user id
 router.get("/:userId/foods", async (req, res, next) => {
+  // OUPUT
+  // [
+  //   {
+  //     id: 1,
+  //     food: [
+  //       {
+  //         id: 2,
+  //         name: 'apple',
+  //         expiration_date: {
+  //           life: '6 Months'
+  //         },
+  //         user_food: {
+  //           startDate: '2019-11-23T13:33:42.187Z',
+  //           eatBy: 5,
+  //           status: 'Pending',
+  //           createdAt: '2019-11-23T13:33:42.753Z',
+  //           updatedAt: '2019-11-23T13:33:42.753Z',
+  //           userId: 1,
+  //           foodId: 2
+  //         }
+  //       }
+  //     ]
+  //   }
+  // ]
   try {
-    const allFood = await UserFood.findAll({
+    const allFood = await User.findAll({
+      include: [
+        {
+          model: Food,
+          include: [{ model: ExpirationDate, attributes: ["life"] }],
+          attributes: ["id", "name"]
+        }
+      ],
+      attributes: ["id"],
       where: {
-        userId: req.params.userId
+        id: req.params.userId
       }
     });
     res.json(allFood);
@@ -18,6 +52,7 @@ router.get("/:userId/foods", async (req, res, next) => {
   }
 });
 
+// Get all recipes for a given user id
 router.get("/:userId/recipes", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
@@ -28,6 +63,7 @@ router.get("/:userId/recipes", async (req, res, next) => {
   }
 });
 
+// Get specific food for user
 router.get("/:userId/foods/:foodId", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
@@ -42,6 +78,7 @@ router.get("/:userId/foods/:foodId", async (req, res, next) => {
   }
 });
 
+// Add new food for user, and check if food exists in Food model. If not, create
 router.post("/:userId/foods", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
@@ -57,6 +94,7 @@ router.post("/:userId/foods", async (req, res, next) => {
   }
 });
 
+// Delete specific food from user
 router.delete("/:userId/foods/:foodId", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
@@ -67,6 +105,7 @@ router.delete("/:userId/foods/:foodId", async (req, res, next) => {
   }
 });
 
+// Update specific food for user
 router.put("/:userId/foods/:foodId", async (req, res, next) => {
   try {
     const food = await UserFood.findOne({
@@ -82,6 +121,7 @@ router.put("/:userId/foods/:foodId", async (req, res, next) => {
   }
 });
 
+// Add new recipe for user
 router.post("/:userId/recipes", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);

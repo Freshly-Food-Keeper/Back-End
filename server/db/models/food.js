@@ -10,6 +10,7 @@ const Food = db.define("food", {
   }
 });
 
+// This lifecycle hook adds an expiration date if found to food
 Food.beforeCreate(async function(foodInstance) {
   if (foodInstance.expirationDateId === null) {
     const shelfLife = await ExpirationDate.findOne({
