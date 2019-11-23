@@ -1165,11 +1165,6 @@ async function seed() {
       life: "2 Months"
     },
     {
-      idremove: 123,
-      name: "Turducken",
-      keywords: "Turducken"
-    },
-    {
       idremove: 135,
       name: "Surimi seafood",
       keywords: "Surimi seafood,surimi,sea,food",
@@ -1397,11 +1392,6 @@ async function seed() {
       name: "Egg substitutes",
       keywords: "Egg substitutes,egg,substitute,Egg substitute",
       life: "4 Days"
-    },
-    {
-      idremove: 292,
-      name: "Fish",
-      keywords: "Fish,breaded,bread"
     },
     {
       idremove: 293,
@@ -2026,11 +2016,6 @@ async function seed() {
       keywords:
         "garlic aioli,aioli,garlic,mayonnaise,mayo,garlic mayo,garlic mayonnaise,mayo",
       life: "4 Days"
-    },
-    {
-      idremove: 648,
-      name: "Salad dressing",
-      keywords: "homemade salad dressing,homemade,salad dressing,salad,dressing"
     },
     {
       idremove: 649,

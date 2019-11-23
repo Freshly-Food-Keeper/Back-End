@@ -3,13 +3,15 @@ const db = require("../db");
 
 const ExpirationDate = db.define("expiration_date", {
   name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   keywords: {
     type: Sequelize.TEXT
   },
   life: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   }
 });
 
