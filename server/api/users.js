@@ -6,39 +6,45 @@ const { Food } = require("../db/models");
 const { ExpirationDate } = require("../db/models");
 module.exports = router;
 
+const calculateExpiresIn = (startDate, expirationDate) => {
+  const now = new Date();
+  const start = new Date(startDate);
+  const diffDays = Math.ceil((now - start) / (1000 * 60 * 60 * 24));
+
+  console.log("diffDays", diffDays);
+  console.log("exp - diff", expirationDate - diffDays);
+
+  return expirationDate - diffDays;
+};
+
 // Get all foods for a given user id
+/* OUTPUT
+  [
+    {
+        "id": 10,
+        "name": "potato",
+        "imageUrl": "../../../assets/food-placeholder.jpg",
+        "expiresIn": 349
+    },
+    {
+        "id": 11,
+        "name": "lettuce",
+        "imageUrl": "../../../assets/food-placeholder.jpg",
+        "expiresIn": 19
+    },  
+  ]
+*/
 router.get("/:userId/foods", async (req, res, next) => {
-  // OUPUT
-  // [
-  //   {
-  //     id: 1,
-  //     food: [
-  //       {
-  //         id: 2,
-  //         name: 'apple',
-  //         expiration_date: {
-  //           life: '6 Months'
-  //         },
-  //         user_food: {
-  //           startDate: '2019-11-23T13:33:42.187Z',
-  //           eatBy: 5,
-  //           status: 'Pending',
-  //           createdAt: '2019-11-23T13:33:42.753Z',
-  //           updatedAt: '2019-11-23T13:33:42.753Z',
-  //           userId: 1,
-  //           foodId: 2
-  //         }
-  //       }
-  //     ]
-  //   }
-  // ]
   try {
     const allFood = await User.findAll({
       include: [
         {
           model: Food,
           include: [{ model: ExpirationDate, attributes: ["life"] }],
-          attributes: ["id", "name"]
+          through: {
+            where: { status: "Pending" }
+          },
+          attributes: ["id", "name", "imageUrl"]
         }
       ],
       attributes: ["id"],
@@ -46,7 +52,24 @@ router.get("/:userId/foods", async (req, res, next) => {
         id: req.params.userId
       }
     });
-    res.json(allFood);
+
+    const foodArr = allFood[0].food.map(food => {
+      let expiresIn = food.expiration_date
+        ? calculateExpiresIn(
+            food.user_food.startDate,
+            food.expiration_date.life
+          )
+        : null;
+
+      return {
+        id: food.id,
+        name: food.name,
+        imageUrl: food.imageUrl,
+        expiresIn
+      };
+    });
+
+    res.json(foodArr);
   } catch (err) {
     next(err);
   }

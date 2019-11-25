@@ -7,6 +7,10 @@ const Food = db.define("food", {
   name: {
     type: Sequelize.STRING,
     allowull: false
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: "../../../assets/food-placeholder.jpg"
   }
 });
 
