@@ -24,7 +24,19 @@ async function seed() {
     {
       firstName: "Meredyth",
       lastName: "Houpos",
-      email: "mer@gamil.com",
+      email: "meredyth@gmail.com",
+      password: "234"
+    },
+    {
+      firstName: "Emma",
+      lastName: "Munley",
+      email: "emmma.m@gmail.com",
+      password: "123"
+    },
+    {
+      firstName: "Sharmin",
+      lastName: "Sultana",
+      email: "sharmin@gmail.com",
       password: "234"
     }
   ];
@@ -52,7 +64,60 @@ async function seed() {
       name: "orange"
     },
     {
-      name: "apple"
+      name: "apple",
+      expirationDateId: 51
+    },
+    {
+      name: "potato",
+      expirationDateId: 11
+    },
+    {
+      name: "carrot juice",
+      expirationDateId: 30
+    },
+    {
+      name: "barley",
+      expirationDateId: 33
+    },
+    {
+      name: "polenta",
+      expirationDateId: 39
+    },
+    {
+      name: "zucchini",
+      expirationDateId: 42
+    },
+    {
+      name: "bison",
+      expirationDateId: 47
+    },
+    {
+      name: "bacon",
+      expirationDateId: 67
+    },
+    {
+      name: "bananas",
+      expirationDateId: 89
+    },
+    {
+      name: "grapes",
+      expirationDateId: 139
+    },
+    {
+      name: "lettuce",
+      expirationDateId: 157
+    },
+    {
+      name: "avocado",
+      expirationDateId: 152
+    },
+    {
+      name: "cucumber",
+      expirationDateId: 155
+    },
+    {
+      name: "pasta salad",
+      expirationDateId: 167
     }
   ];
 
@@ -65,7 +130,86 @@ async function seed() {
     {
       eatBy: 5,
       userId: 2,
-      foodId: 1
+      foodId: 1,
+      status: "Eaten"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 2,
+      status: "Eaten"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 3,
+      status: "Eaten"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 4,
+      status: "Eaten"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 5,
+      status: "Thrown Away"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 6,
+      status: "Thrown Away"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 7,
+      status: "Thrown Away"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 8,
+      status: "Thrown Away"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 9,
+      status: "Thrown Away"
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 10
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 11
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 12
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 13
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 14
+    },
+    {
+      eatBy: 5,
+      userId: 2,
+      foodId: 15
     }
   ];
 
@@ -388,14 +532,14 @@ async function seed() {
       idremove: 229,
       name: "Apples",
       keywords: "Apples,apple",
-      life: "8 Months"
+      life: "3 Weeks"
     },
     {
       idremove: 246,
       name: "Papaya, mango, feijoa, passionfruit, casaha melon",
       keywords:
         "Papaya,mango,feijoa,passionfruit,casaha melon,melon,fruit,passion",
-      life: "8 Months"
+      life: "5 Days"
     },
     {
       idremove: 551,
