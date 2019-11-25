@@ -52,7 +52,8 @@ async function seed() {
       name: "orange"
     },
     {
-      name: "apple"
+      name: "apple",
+      expirationDateId: 26
     }
   ];
 
