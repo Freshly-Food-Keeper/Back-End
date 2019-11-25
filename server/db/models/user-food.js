@@ -4,10 +4,7 @@ const db = require("../db");
 const UserFood = db.define("user_food", {
   startDate: {
     type: Sequelize.DATE,
-    defaultValue: new Date()
-  },
-  eatBy: {
-    type: Sequelize.INTEGER
+    defaultValue: Date.now()
   },
   status: {
     type: Sequelize.STRING,
