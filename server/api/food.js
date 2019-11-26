@@ -125,3 +125,5 @@ router.put('/:foodId', async (req, res, next) => {
     next(err);
   }
 });
+
+module.exports = router;
