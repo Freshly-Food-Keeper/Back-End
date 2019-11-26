@@ -4,9 +4,7 @@ const { UserFood } = require('../db/models');
 // Data route for calculating and sending back the percentage of food consumed vs wasted
 router.get('/', async (req, res, next) => {
   try {
-    console.log('reqparams', req.params);
-    console.log('reqbody', req.body);
-    const userId = req.params.userId;
+    const userId = req.query.userId;
     const consumed = await UserFood.countFoodConsumed(userId);
     const wasted = await UserFood.countFoodWasted(userId);
 
