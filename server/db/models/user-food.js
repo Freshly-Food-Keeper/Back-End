@@ -19,6 +19,8 @@ const UserFood = db.define('user_food', {
 
 module.exports = UserFood;
 
+// Instances
+
 UserFood.findByUser = function(foodId, userId) {
   return this.findOne({
     where: {

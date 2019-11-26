@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { UserFood } = require('../db/models');
 
+// Data route for calculating and sending back the percentage of food consumed vs wasted
 router.get('/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId;
