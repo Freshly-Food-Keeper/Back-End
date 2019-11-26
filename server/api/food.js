@@ -1,13 +1,5 @@
 const router = require('express').Router();
-const {
-  Recipe,
-  User,
-  UserFood,
-  Food,
-  ExpirationDate,
-} = require('../db/models');
-
-module.exports = router;
+const { User, UserFood, Food, ExpirationDate } = require('../db/models');
 
 const calculateExpiresIn = (startDate, expirationDate) => {
   const now = new Date();
@@ -37,7 +29,7 @@ const calculateExpiresIn = (startDate, expirationDate) => {
     },
   ]
 */
-router.get('/:userId/foods', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const allFood = await User.findAll({
       include: [
@@ -52,7 +44,7 @@ router.get('/:userId/foods', async (req, res, next) => {
       ],
       attributes: ['id'],
       where: {
-        id: req.params.userId,
+        id: req.query.userId,
       },
     });
 
@@ -78,36 +70,10 @@ router.get('/:userId/foods', async (req, res, next) => {
   }
 });
 
-// Get all recipes for a given user id
-router.get('/:userId/recipes', async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.userId);
-    const recipe = await user.getRecipes();
-    res.json(recipe);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// Get specific food for user
-router.get('/:userId/foods/:foodId', async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.userId);
-    const food = await user.getFood({
-      where: {
-        id: req.params.foodId,
-      },
-    });
-    res.json(food);
-  } catch (err) {
-    next(err);
-  }
-});
-
 // Add new food for user, and check if food exists in Food model. If not, create
-router.post('/:userId/foods', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.userId);
+    const user = await User.findByPk(req.query.userId);
     const food = await Food.findOrCreate({
       where: {
         name: req.body.name,
@@ -120,11 +86,27 @@ router.post('/:userId/foods', async (req, res, next) => {
   }
 });
 
-// Delete specific food from user
-router.delete('/:userId/foods/:foodId', async (req, res, next) => {
+// Get specific food for user
+router.get('/:foodId', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.userId);
-    await user.removeFood(req.params.foodId);
+    const user = await User.findByPk(req.query.userId);
+    const foodId = req.params.foodId;
+    const food = await user.getFood({
+      where: {
+        id: foodId,
+      },
+    });
+    res.json(food);
+  } catch (err) {
+    next(err);
+  }
+});
+// Delete specific food from user
+router.delete('/:foodId', async (req, res, next) => {
+  try {
+    const foodId = req.params.foodId;
+    const user = await User.findByPk(req.query.userId);
+    await user.removeFood(foodId);
     res.sendStatus(200);
   } catch (err) {
     next(err);
@@ -132,34 +114,13 @@ router.delete('/:userId/foods/:foodId', async (req, res, next) => {
 });
 
 // Update specific food for user
-router.put('/:userId/foods/:foodId', async (req, res, next) => {
+router.put('/:foodId', async (req, res, next) => {
   const foodId = req.params.foodId;
-  const userId = req.params.userId;
+  const userId = req.query.userId;
   try {
     const food = await UserFood.findByUser(foodId, userId);
     await food.update(req.body);
     res.json(food);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// Add new recipe for user
-router.post('/:userId/recipes', async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.userId);
-    const recipe = await Recipe.findOrCreate({
-      where: {
-        apiId: req.body.apiId,
-      },
-      defaults: {
-        name: req.body.name,
-        url: req.body.url,
-        imgUrl: req.body.imgUrl,
-      },
-    });
-    await user.addRecipe(recipe[0]);
-    res.json(recipe[0]);
   } catch (err) {
     next(err);
   }
