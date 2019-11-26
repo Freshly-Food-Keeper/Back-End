@@ -11,18 +11,18 @@ notifications:
     on_success: change # default: change (only when going from broken to fixed)
     on_failure: always # default: always (which is annoying, as it should be)
 install:
-  - npm ci # faster, goes only from package-lock
+  - npm ci
 before_script:
-  # - psql -c 'freshly' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'freshly' -U postgres
 script:
-  # - npm test             # test the code
-  # - npm run build-client # make the bundle
+  - npm test
+  - npm run build-client
 
 before_deploy:
-  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+  - rm -rf node_modules
 deploy:
-  skip_cleanup: true # prevents travis from deleting the build
+  skip_cleanup: true$(heroku auth: token) —org
   provider: heroku
-  app: freshly-back-end # see README
+  app: freshly-back-end
   api_key:
     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
