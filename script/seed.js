@@ -97,7 +97,8 @@ async function seed() {
     },
     {
       name: "bananas",
-      expirationDateId: 89
+      expirationDateId: 89,
+      imageUrl: "https://spoonacular.com/cdn/ingredients_250x250/bananas.jpg"
     },
     {
       name: "grapes",
