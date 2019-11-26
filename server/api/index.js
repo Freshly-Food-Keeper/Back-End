@@ -1,7 +1,6 @@
 const router = require('express').Router();
 module.exports = router;
 
-router.use('/', require('./users'));
 router.use('/data', require('./data'));
 router.use('/food', require('./food'));
 router.use('/recipe', require('./recipe'));
