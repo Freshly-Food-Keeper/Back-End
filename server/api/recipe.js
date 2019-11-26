@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, UserFood, Food, ExpirationDate } = require('../db/models');
+const { User, Recipe } = require('../db/models');
 
 // Get all recipes for a given user id
 router.get('/', async (req, res, next) => {
@@ -32,3 +32,5 @@ router.post('/', async (req, res, next) => {
     next(err);
   }
 });
+
+module.exports = router;
