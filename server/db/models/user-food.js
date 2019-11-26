@@ -27,3 +27,21 @@ UserFood.findByUser = function(foodId, userId) {
     },
   });
 };
+
+UserFood.countFoodConsumed = function(userId) {
+  return this.findAndCountAll({
+    where: {
+      userId,
+      status: 'Eaten',
+    },
+  });
+};
+
+UserFood.countFoodWasted = function(userId) {
+  return this.findAndCountAll({
+    where: {
+      userId,
+      status: 'Thrown Away',
+    },
+  });
+};
