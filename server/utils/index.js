@@ -41,4 +41,15 @@ const getFoodArray = foodArray => {
   });
 };
 
-module.exports = { getFoodArray };
+const calculateFoodPercentages = (consumedCount, wastedCount) => {
+  const sum = consumedCount + wastedCount;
+  const consumed = Math.round(consumedCount / sum * 100);
+  const wasted = 100 - Math.round(consumedCount / sum * 100);
+
+  return {
+    consumed,
+    wasted,
+  };
+};
+
+module.exports = { getFoodArray, calculateFoodPercentages };
