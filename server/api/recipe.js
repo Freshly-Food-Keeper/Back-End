@@ -15,19 +15,10 @@ router.get('/', async (req, res, next) => {
 // Add new recipe for user
 router.post('/', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.userId);
-    const recipe = await Recipe.findOrCreate({
-      where: {
-        apiId: req.body.apiId,
-      },
-      defaults: {
-        name: req.body.name,
-        url: req.body.url,
-        imgUrl: req.body.imgUrl,
-      },
-    });
-    await user.addRecipe(recipe[0]);
-    res.json(recipe[0]);
+    const user = await User.findByPk(req.query.userId);
+    const recipe = await Recipe.create(req.body);
+    await user.addRecipe(recipe);
+    res.json(recipe);
   } catch (err) {
     next(err);
   }
