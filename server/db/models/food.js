@@ -1,17 +1,20 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
-const ExpirationDate = require("./expiration-date");
+const Sequelize = require('sequelize');
+const db = require('../db');
+const ExpirationDate = require('./expiration-date');
 const Op = Sequelize.Op;
+const User = require('./user');
 
-const Food = db.define("food", {
+const Food = db.define('food', {
   name: {
     type: Sequelize.STRING,
-    allowull: false
+    allowull: false,
   },
   imageUrl: {
-    type: Sequelize.STRING
-  }
+    type: Sequelize.STRING,
+  },
 });
+
+//Hooks
 
 // This lifecycle hook adds an expiration date if found to food
 Food.afterCreate(async function(foodInstance) {
@@ -19,9 +22,9 @@ Food.afterCreate(async function(foodInstance) {
     const shelfLife = await ExpirationDate.findOne({
       where: {
         name: {
-          [Op.iLike]: `%${foodInstance.name}%`
-        }
-      }
+          [Op.iLike]: `%${foodInstance.name}%`,
+        },
+      },
     });
 
     if (shelfLife !== null || shelfLife !== undefined) {
@@ -29,5 +32,42 @@ Food.afterCreate(async function(foodInstance) {
     }
   }
 });
+
+// Instances
+User.getAllFood = function(userId) {
+  return this.findAll({
+    include: [
+      {
+        model: Food,
+        include: [{ model: ExpirationDate, attributes: ['life'] }],
+        through: {
+          where: { status: 'Pending' },
+        },
+        attributes: ['id', 'name', 'imageUrl'],
+      },
+    ],
+    attributes: ['id'],
+    where: {
+      id: userId,
+    },
+  });
+};
+
+User.getFoodById = function(foodId) {
+  return this.getFood({
+    where: {
+      id: foodId,
+    },
+  });
+};
+
+User.createFoodItem = function(foodItem) {
+  const food = this.findOrCreate({
+    where: {
+      name: foodItem,
+    },
+  });
+  return food[0];
+};
 
 module.exports = Food;
