@@ -19,7 +19,7 @@ const Recipe = db.define('recipe', {
 
 module.exports = Recipe;
 
-Recipe.create = function(reqBody) {
+Recipe.findOrCreateRecipe = function(reqBody) {
   const recipe = this.findOrCreate({
     where: {
       apiId: reqBody.apiId,
@@ -30,5 +30,5 @@ Recipe.create = function(reqBody) {
       imgUrl: reqBody.imgUrl,
     },
   });
-  return recipe[0];
+  return recipe;
 };
