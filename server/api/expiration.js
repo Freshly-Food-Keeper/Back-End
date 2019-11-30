@@ -5,6 +5,7 @@ const Op = Sequelize.Op;
 
 //get food expiration date for pre-loaded form data
 router.get("/:foodName", async (req, res, next) => {
+  console.log("in expirationdate route");
   try {
     const expirationDate = await ExpirationDate.findAll({
       where: {
