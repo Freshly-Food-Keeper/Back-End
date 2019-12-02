@@ -1,9 +1,9 @@
-const User = require("./user");
-const Food = require("./food");
-const Recipe = require("./recipe");
-const UserFood = require("./user-food");
-const UserRecipe = require("./user-recipe");
-const ExpirationDate = require("./expiration-date");
+const User = require('./user');
+const Food = require('./food');
+const Recipe = require('./recipe');
+const UserFood = require('./user-food');
+const UserRecipe = require('./user-recipe');
+const ExpirationDate = require('./expiration-date');
 
 // Associations
 Recipe.belongsToMany(User, { through: UserRecipe });
@@ -19,5 +19,5 @@ module.exports = {
   Recipe,
   ExpirationDate,
   UserFood,
-  UserRecipe
+  UserRecipe,
 };
