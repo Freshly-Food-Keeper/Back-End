@@ -43,20 +43,16 @@ async function seed() {
 
   const recipes = [
     {
-      name: "mac n cheese",
-      url:
-        "https://www.momontimeout.com/best-homemade-baked-mac-and-cheese-recipe/",
-      apiId: 1,
-      imgUrl:
-        "https://www.foodiecrush.com/wp-content/uploads/2017/10/Instant-Pot-Macaroni-and-Cheese-foodiecrush.com-019.jpg"
+      name: "Beef Tenderloin",
+      url: "https://spoonacular.com/beef-tenderloin-634701",
+      apiId: 634701,
+      imgUrl: "https://spoonacular.com/recipeImages/634701-312x231.jpg"
     },
     {
-      name: "apple-pie",
-      url:
-        "https://www.momontimeout.com/best-homemade-baked-mac-and-cheese-recipe/",
-      apiId: 2,
-      imgUrl:
-        "https://image.shutterstock.com/image-photo/red-apple-on-white-background-260nw-158989157.jpg"
+      name: "Apple Pie",
+      url: "https://spoonacular.com/apple-pie-vermont-style-632580",
+      apiId: 632580,
+      imgUrl: "https://spoonacular.com/recipeImages/632580-312x231.jpg"
     }
   ];
   const food = [
@@ -120,10 +116,6 @@ async function seed() {
       name: "cucumber",
       expirationDateId: 145,
       imageUrl: "https://spoonacular.com/cdn/ingredients_250x250/cucumber.jpg"
-    },
-    {
-      name: "pasta salad",
-      expirationDateId: 155
     }
   ];
 
