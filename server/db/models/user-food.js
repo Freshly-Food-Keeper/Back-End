@@ -15,6 +15,9 @@ const UserFood = db.define('user_food', {
       isIn: [['Eaten', 'Thrown Away', 'Pending']],
     },
   },
+  shelfLife: {
+    type: Sequelize.INTEGER,
+  },
 });
 
 module.exports = UserFood;
@@ -46,4 +49,14 @@ UserFood.countFoodWasted = function(userId) {
       status: 'Thrown Away',
     },
   });
+};
+
+UserFood.createFoodItem = async function(foodId, userId, shelfLife) {
+  const newFood = await UserFood.create({
+    foodId,
+    userId,
+    shelfLife,
+  });
+
+  return newFood;
 };
