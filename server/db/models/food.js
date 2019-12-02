@@ -27,7 +27,7 @@ Food.afterCreate(async function(foodInstance) {
       }
     });
 
-    if (shelfLife !== null || shelfLife !== undefined) {
+    if (shelfLife !== null && shelfLife !== undefined) {
       foodInstance.expirationDateId = shelfLife.id;
     }
   }
