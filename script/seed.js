@@ -258,11 +258,6 @@ async function seed() {
       startDate: new Date("11/24/19"),
       userId: 2,
       foodId: 14
-    },
-    {
-      startDate: new Date("11/24/19"),
-      userId: 2,
-      foodId: 15
     }
   ];
 
