@@ -51,7 +51,6 @@ const preLoadShelfLife = async userFood => {
   if (!userFood.shelfLife) {
     try {
       const food = await Food.findByPk(userFood.foodId);
-      console.log("food", food);
       const expirationDate = await ExpirationDate.findByPk(
         food.expirationDateId
       );

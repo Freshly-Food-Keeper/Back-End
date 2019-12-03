@@ -52,10 +52,10 @@ router.get("/:foodId", async (req, res, next) => {
 });
 
 // Delete specific food from user
-router.delete("/:foodId", async (req, res, next) => {
+router.delete("/", async (req, res, next) => {
   try {
     const foodId = req.params.foodId;
-    const user = await User.findByPk(req.query.userId);
+    const user = await User.findByPk(req.params.userId);
     await user.removeFood(foodId);
     res.sendStatus(204);
   } catch (err) {
@@ -64,13 +64,13 @@ router.delete("/:foodId", async (req, res, next) => {
 });
 
 // Update specific food for user
-router.put("/:foodId", async (req, res, next) => {
-  const foodId = req.params.foodId;
-  const userId = req.query.userId;
+router.put("/", async (req, res, next) => {
+  const foodId = req.body.foodId;
+  const userId = req.body.userId;
   try {
     const food = await UserFood.findByUser(foodId, userId);
-    await food.update(req.body);
-    res.status(201).json(food);
+    await food.update({ status: req.body.status });
+    res.sendStatus(201);
   } catch (err) {
     next(err);
   }
