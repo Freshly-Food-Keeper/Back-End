@@ -1,17 +1,17 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
-const ExpirationDate = require('./expiration-date');
+const Sequelize = require("sequelize");
+const db = require("../db");
+const ExpirationDate = require("./expiration-date");
 const Op = Sequelize.Op;
-const User = require('./user');
+const User = require("./user");
 
-const Food = db.define('food', {
+const Food = db.define("food", {
   name: {
     type: Sequelize.STRING,
-    allowull: false,
+    allowull: false
   },
   imageUrl: {
-    type: Sequelize.STRING,
-  },
+    type: Sequelize.STRING
+  }
 });
 
 //Hooks
@@ -22,9 +22,9 @@ Food.afterCreate(async function(foodInstance) {
     const shelfLife = await ExpirationDate.findOne({
       where: {
         name: {
-          [Op.iLike]: `%${foodInstance.name}%`,
-        },
-      },
+          [Op.iLike]: `%${foodInstance.name}%`
+        }
+      }
     });
 
     if (shelfLife !== null && shelfLife !== undefined) {
@@ -39,33 +39,33 @@ User.getAllFood = function(userId) {
     include: [
       {
         model: Food,
-        include: [{ model: ExpirationDate, attributes: ['life'] }],
+        include: [{ model: ExpirationDate, attributes: ["life"] }],
         through: {
-          where: { status: 'Pending' },
+          where: { status: "Pending" }
         },
-        attributes: ['id', 'name', 'imageUrl'],
-      },
+        attributes: ["id", "name", "imageUrl"]
+      }
     ],
-    attributes: ['id'],
+    attributes: ["id"],
     where: {
-      id: userId,
-    },
+      id: userId
+    }
   });
 };
 
 User.getFoodById = function(foodId) {
   return this.getFood({
     where: {
-      id: foodId,
-    },
+      id: foodId
+    }
   });
 };
 
 User.createFoodItem = async function(name) {
   const newFood = await Food.findOrCreate({
     where: {
-      name,
-    },
+      name: name
+    }
   });
   return newFood[0];
 };
