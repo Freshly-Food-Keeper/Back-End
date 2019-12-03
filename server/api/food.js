@@ -54,8 +54,8 @@ router.get("/:foodId", async (req, res, next) => {
 // Delete specific food from user
 router.delete("/", async (req, res, next) => {
   try {
-    const foodId = req.params.foodId;
-    const user = await User.findByPk(req.params.userId);
+    const foodId = req.query.foodId;
+    const user = await User.findByPk(req.query.userId);
     await user.removeFood(foodId);
     res.sendStatus(204);
   } catch (err) {
