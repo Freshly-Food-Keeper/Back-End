@@ -1,24 +1,24 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
-const ExpirationDate = require('./expiration-date');
-const Food = require('./food');
-const UserFood = db.define('user_food', {
+const Sequelize = require("sequelize");
+const db = require("../db");
+const ExpirationDate = require("./expiration-date");
+const Food = require("./food");
+const UserFood = db.define("user_food", {
   startDate: {
     type: Sequelize.DATE,
-    defaultValue: Date.now(),
+    defaultValue: Date.now()
   },
   status: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: 'Pending',
+    defaultValue: "Pending",
     validate: {
       notEmpty: true,
-      isIn: [['Eaten', 'Thrown Away', 'Pending']],
-    },
+      isIn: [["Eaten", "Thrown Away", "Pending"]]
+    }
   },
   shelfLife: {
-    type: Sequelize.STRING,
-  },
+    type: Sequelize.STRING
+  }
 });
 module.exports = UserFood;
 // Instances
@@ -26,24 +26,24 @@ UserFood.findByUser = function(foodId, userId) {
   return this.findOne({
     where: {
       foodId,
-      userId,
-    },
+      userId
+    }
   });
 };
 UserFood.countFoodConsumed = function(userId) {
   return this.findAndCountAll({
     where: {
       userId,
-      status: 'Eaten',
-    },
+      status: "Eaten"
+    }
   });
 };
 UserFood.countFoodWasted = function(userId) {
   return this.findAndCountAll({
     where: {
       userId,
-      status: 'Thrown Away',
-    },
+      status: "Thrown Away"
+    }
   });
 };
 
@@ -65,9 +65,15 @@ UserFood.afterCreate(preLoadShelfLife);
 
 UserFood.createFoodItem = async function(foodId, userId, shelfLife) {
   const newFood = await UserFood.findOrCreate({
-    foodId,
-    userId,
-    shelfLife,
+    where: {
+      foodId: foodId,
+      userId: userId
+    },
+    defaults: {
+      foodId,
+      userId,
+      shelfLife
+    }
   });
   return newFood;
 };
