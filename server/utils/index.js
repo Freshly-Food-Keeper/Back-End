@@ -43,9 +43,9 @@ const getFoodArray = foodArray => {
 
 const calculateFoodPercentages = (consumedCount, wastedCount) => {
   const sum = consumedCount + wastedCount;
+  if (sum === 0) return { consumed: 0, wasted: 0 };
   const consumed = Math.round(consumedCount / sum * 100);
   const wasted = 100 - Math.round(consumedCount / sum * 100);
-
   return {
     consumed,
     wasted,
