@@ -27,4 +27,18 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+// Delete recipe for user
+router.delete('/', async (req, res, next) => {
+  try {
+    const recipeId = req.query.recipeId;
+    console.log('recipeID', recipeId);
+    const user = await User.findByPk(req.query.userId);
+
+    await user.removeRecipe(recipeId);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

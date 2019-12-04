@@ -87,7 +87,7 @@ async function seed() {
     },
     {
       title: 'Chocolatey Overnight Oats with Strawberries',
-      image: 'https://spoonacular.com/recipeImages/636589-312x231.jpg',
+      image: 'https://spoonacular.com/recipeImages/639303-312x231.jpg',
       instructions: [
         'Mix all the ingredients, except for the strawberries.',
         'Place a bit of the oatmeal batter into a jar or other airtight container,Add slices of strawberries on top, Add another layer of oatmeal batter and strawberries. Top with the remaining oatmeal batter. Put it in the refrigerator overnight. Enjoy!',
