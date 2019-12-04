@@ -70,6 +70,8 @@ UserFood.createFoodItem = async function(foodId, userId, shelfLife) {
       userId: userId
     },
     defaults: {
+      foodId,
+      userId,
       shelfLife
     }
   });
