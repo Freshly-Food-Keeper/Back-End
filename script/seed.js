@@ -14,8 +14,6 @@ async function seed() {
   await db.sync({ force: true });
   console.log("db synced!");
 
-  const date = Date.now();
-
   const users = [
     {
       firstName: "Emma",
@@ -174,141 +172,115 @@ async function seed() {
 
   const user_foods = [
     {
-      startDate: date,
       userId: 3,
       foodId: 2
     },
     {
-      startDate: date,
       userId: 3,
       foodId: 4
     },
     {
-      startDate: date,
       userId: 3,
       foodId: 6
     },
     {
-      startDate: date,
       userId: 3,
       foodId: 8
     },
     {
-      startDate: date,
       userId: 3,
       foodId: 10
     },
     {
-      startDate: date,
       userId: 3,
       foodId: 12
     },
     {
-      startDate: date,
       userId: 1,
       foodId: 3
     },
     {
-      startDate: date,
       userId: 1,
       foodId: 5
     },
     {
-      startDate: date,
       userId: 1,
       foodId: 7
     },
     {
-      startDate: date,
       userId: 1,
       foodId: 9
     },
     {
-      startDate: date,
       userId: 1,
       foodId: 11
     },
     {
-      startDate: date,
       userId: 1,
       foodId: 13
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 1,
       status: "Eaten"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 2,
       status: "Eaten"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 3,
       status: "Eaten"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 4,
       status: "Eaten"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 5,
       status: "Thrown Away"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 6,
       status: "Thrown Away"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 7,
       status: "Thrown Away"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 8,
       status: "Thrown Away"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 9,
       status: "Thrown Away"
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 10
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 11
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 12
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 13
     },
     {
-      startDate: date,
       userId: 2,
       foodId: 14
     }
