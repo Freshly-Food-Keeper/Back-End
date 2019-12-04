@@ -118,19 +118,26 @@ async function seed() {
     },
     {
       name: "potato",
-      expirationDateId: 10
+      expirationDateId: 10,
+      imageUrl:
+        "https://spoonacular.com/cdn/ingredients_250x250/potatoes-yukon-gold.png"
     },
     {
       name: "carrot juice",
-      expirationDateId: 28
+      expirationDateId: 28,
+      imageUrl:
+        "https://spoonacular.com/cdn/ingredients_250x250/carrot-juice.jpg"
     },
     {
       name: "barley",
-      expirationDateId: 33
+      expirationDateId: 33,
+      imageUrl:
+        "https://spoonacular.com/cdn/ingredients_250x250/pearl-barley.png"
     },
     {
       name: "polenta",
-      expirationDateId: 39
+      expirationDateId: 39,
+      imageUrl: "https://spoonacular.com/cdn/ingredients_250x250/cornmeal.png"
     },
     {
       name: "zucchini",
@@ -139,11 +146,14 @@ async function seed() {
     },
     {
       name: "bison",
-      expirationDateId: 46
+      expirationDateId: 46,
+      imageUrl:
+        "https://spoonacular.com/cdn/ingredients_250x250/fresh-ground-beef.jpg"
     },
     {
       name: "bacon",
-      expirationDateId: 65
+      expirationDateId: 65,
+      imageUrl: "https://spoonacular.com/cdn/ingredients_250x250/raw-bacon.png"
     },
     {
       name: "bananas",
@@ -152,11 +162,14 @@ async function seed() {
     },
     {
       name: "grapes",
-      expirationDateId: 133
+      expirationDateId: 133,
+      imageUrl: "https://spoonacular.com/cdn/ingredients_250x250/red-grapes.jpg"
     },
     {
       name: "lettuce",
-      expirationDateId: 146
+      expirationDateId: 146,
+      imageUrl:
+        "https://spoonacular.com/cdn/ingredients_250x250/iceberg-lettuce.jpg"
     },
     {
       name: "avocado",
