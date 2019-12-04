@@ -36,7 +36,7 @@ const getFoodArray = foodArray => {
       id: food.id,
       name: food.name,
       imageUrl: food.imageUrl,
-      expiresIn
+      expiresIn,
     };
   });
 };
@@ -48,7 +48,7 @@ const calculateFoodPercentages = (consumedCount, wastedCount) => {
   const wasted = 100 - Math.round(consumedCount / sum * 100);
   return {
     consumed,
-    wasted
+    wasted,
   };
 };
 

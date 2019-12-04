@@ -3,32 +3,24 @@ const db = require('../db');
 
 // recipes will be stored as a url to link to the same recipe
 const Recipe = db.define('recipe', {
-  name: {
+  title: {
     type: Sequelize.STRING,
   },
-  url: {
+  image: {
     type: Sequelize.STRING,
   },
-  apiId: {
+  readyInMinutes: {
     type: Sequelize.INTEGER,
   },
-  imgUrl: {
-    type: Sequelize.STRING,
+  servings: {
+    type: Sequelize.INTEGER,
+  },
+  instructions: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+  },
+  ingredients: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
   },
 });
 
 module.exports = Recipe;
-
-Recipe.findOrCreateRecipe = function(reqBody) {
-  const recipe = this.findOrCreate({
-    where: {
-      apiId: reqBody.apiId,
-    },
-    defaults: {
-      name: reqBody.name,
-      url: reqBody.url,
-      imgUrl: reqBody.imgUrl,
-    },
-  });
-  return recipe;
-};
