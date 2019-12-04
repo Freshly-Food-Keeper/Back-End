@@ -43,18 +43,69 @@ async function seed() {
 
   const recipes = [
     {
-      name: 'Beef Tenderloin',
-      url: 'https://spoonacular.com/beef-tenderloin-634701',
-      apiId: 634701,
-      imgUrl: 'https://spoonacular.com/recipeImages/634701-312x231.jpg',
+      title: 'Black Truffle Caesar Salad',
+      instructions: [
+        'Add lemon juice, olive oil, and salt to a blender or small food processor',
+        'Grate half the truffles into the blender and reserve remainder to grate over the salad as a garnish.',
+        'Blend dressing until thick and creamy. Taste and adjust salt and oil to lemon ratio to suite your taste.',
+        'Chop, wash and dry the lettuce.',
+        'Toss with dress and plate.',
+        'Add duck if using.',
+        'Shave remaining truffles over each plate and serve.',
+      ],
+
+      image: 'https://spoonacular.com/recipeImages/635161-312x231.jpg',
+      ingredients: [
+        '1 head romain lettuce',
+        '1 Large Lemon, Juiced',
+        '8 ounces shredded duck confit leg and thigh (optional)',
+      ],
+      readyInMinutes: 45,
+      servings: 4,
     },
     {
-      name: 'Apple Pie',
-      url: 'https://spoonacular.com/apple-pie-vermont-style-632580',
-      apiId: 632580,
-      imgUrl: 'https://spoonacular.com/recipeImages/632580-312x231.jpg',
+      title: 'Butternut Squash Frittata',
+      image: 'https://spoonacular.com/recipeImages/636589-312x231.jpg',
+      instructions: [
+        'Preheat oven to 350',
+        'Spray a 10 oz oven safe dish with cooking spray',
+        'Add your butternut squash',
+        'In a measuring cup add your eggs and milk. Mix until combined. Pour over butternut squash.',
+        'Sprinkle with pepper and top with cheese.',
+        'Bake in oven for 30-35 minutes, until middle is slightly firm',
+        'Let it cool for a few minutes',
+      ],
+      ingredients: [
+        '1 largebutternut squash',
+        '1/2 ozgoat cheese',
+        '1/2 cupsliquid egg substitute',
+        '2 Tbsps non-fat milk',
+        'somebell pepper',
+      ],
+      servings: 2,
+      readyInMinutes: 45,
+    },
+    {
+      title: 'Chocolatey Overnight Oats with Strawberries',
+      image: 'https://spoonacular.com/recipeImages/636589-312x231.jpg',
+      instructions: [
+        'Mix all the ingredients, except for the strawberries.',
+        'Place a bit of the oatmeal batter into a jar or other airtight container,Add slices of strawberries on top, Add another layer of oatmeal batter and strawberries. Top with the remaining oatmeal batter. Put it in the refrigerator overnight. Enjoy!',
+      ],
+      ingredients: [
+        '1 tsp agave nectar',
+        '1/3 cups almond milk',
+        '0.5 Tbs chia seeds',
+        '1 Tbs cocoa powder',
+        '0.5 cups non-fat greek yogurt',
+        '1/3 cups oatmeal',
+        '3 large strawberries',
+      ],
+      servings: 1,
+      readyInMinutes: 45,
     },
   ];
+
   const food = [
     {
       name: 'orange',
@@ -267,7 +318,19 @@ async function seed() {
       userId: 2,
     },
     {
+      recipeId: 1,
+      userId: 1,
+    },
+    {
       recipeId: 2,
+      userId: 2,
+    },
+    {
+      recipeId: 2,
+      userId: 3,
+    },
+    {
+      recipeId: 3,
       userId: 1,
     },
   ];
