@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { User, Recipe } = require('../db/models');
+const router = require("express").Router();
+const { User, Recipe } = require("../db/models");
 
 // Get all recipes for a given user id
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.query.userId);
     const recipe = await user.getRecipes();
@@ -13,12 +13,11 @@ router.get('/', async (req, res, next) => {
 });
 
 // Add new recipe for user
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
+  console.log("in back end!", req.body);
   try {
     const user = await User.findByPk(req.query.userId);
-
     const recipe = await Recipe.create(req.body);
-
     // const recipe = await Recipe.findOrCreateRecipe(req.body);
     await user.addRecipe(recipe);
     res.json(recipe);
@@ -28,10 +27,10 @@ router.post('/', async (req, res, next) => {
 });
 
 // Delete recipe for user
-router.delete('/', async (req, res, next) => {
+router.delete("/", async (req, res, next) => {
   try {
     const recipeId = req.query.recipeId;
-    console.log('recipeID', recipeId);
+    console.log("recipeID", recipeId);
     const user = await User.findByPk(req.query.userId);
 
     await user.removeRecipe(recipeId);
