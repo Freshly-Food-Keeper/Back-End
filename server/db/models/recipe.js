@@ -21,6 +21,9 @@ const Recipe = db.define('recipe', {
   ingredients: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
   },
+  apiId: {
+    type: Sequelize.INTEGER,
+  },
 });
 
 module.exports = Recipe;

@@ -62,6 +62,7 @@ async function seed() {
       ],
       readyInMinutes: 45,
       servings: 4,
+      apiId: 635161,
     },
     {
       title: 'Butternut Squash Frittata',
@@ -84,6 +85,7 @@ async function seed() {
       ],
       servings: 2,
       readyInMinutes: 45,
+      apiId: 636589,
     },
     {
       title: 'Chocolatey Overnight Oats with Strawberries',
@@ -103,6 +105,7 @@ async function seed() {
       ],
       servings: 1,
       readyInMinutes: 45,
+      apiId: 639303,
     },
   ];
 
