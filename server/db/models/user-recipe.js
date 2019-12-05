@@ -7,20 +7,31 @@ const UserRecipe = db.define('users_recipes', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
-  apiId: {
-    type: Sequelize.INTEGER,
-  },
+  // apiId: {
+  //   type: Sequelize.INTEGER,
+  // },
 });
 
 module.exports = UserRecipe;
 
-const getApiId = async userRecipe => {
-  try {
-    const recipe = await Recipe.findByPk(userRecipe.recipeId);
-    const apiId = recipe.apiId;
-    userRecipe.apiId = apiId;
-  } catch (error) {
-    console.error(error);
-  }
-};
-UserRecipe.beforeCreate(getApiId);
+// UserRecipe.beforeCreate(async function(userRecipe) {
+//   try {
+//     const recipe = await Recipe.findByPk(userRecipe.recipeId);
+//     console.log('recipe in getapi', recipe);
+//     const apiId = recipe.apiId;
+//     userRecipe.apiId = apiId;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// });
+
+// UserRecipe.beforeUpdate(async function(userRecipe) {
+//   try {
+//     const recipe = await Recipe.findByPk(userRecipe.recipeId);
+//     console.log('recipe in getapi', recipe);
+//     const apiId = recipe.apiId;
+//     userRecipe.apiId = apiId;
+//   } catch (err) {
+//     console.error(err);
+//   }
+// });
