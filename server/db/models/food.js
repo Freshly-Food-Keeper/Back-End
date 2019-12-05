@@ -61,10 +61,13 @@ User.getFoodById = function(foodId) {
   });
 };
 
-User.createFoodItem = async function(name) {
+User.createFoodItem = async function(name, imageUrl) {
   const newFood = await Food.findOrCreate({
     where: {
       name: name
+    },
+    defaults: {
+      imageUrl
     }
   });
   return newFood[0];
