@@ -16,12 +16,31 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.query.userId);
-
-    const recipe = await Recipe.create(req.body);
-
-    // const recipe = await Recipe.findOrCreateRecipe(req.body);
-    await user.addRecipe(recipe);
-    res.json(recipe);
+    const {
+      apiId,
+      title,
+      image,
+      readyInMinutes,
+      servings,
+      instructions,
+      ingredients,
+    } = req.body;
+    const recipe = await Recipe.findOrCreate({
+      where: {
+        apiId: Number(req.body.apiId),
+      },
+      defaults: {
+        apiId,
+        title,
+        image,
+        readyInMinutes,
+        servings,
+        instructions,
+        ingredients,
+      },
+    });
+    await user.addRecipe(recipe[0]);
+    res.json(recipe[0]);
   } catch (err) {
     next(err);
   }
@@ -31,7 +50,7 @@ router.post('/', async (req, res, next) => {
 router.delete('/', async (req, res, next) => {
   try {
     const recipeId = req.query.recipeId;
-    console.log('recipeID', recipeId);
+
     const user = await User.findByPk(req.query.userId);
 
     await user.removeRecipe(recipeId);
