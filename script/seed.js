@@ -61,7 +61,8 @@ async function seed() {
         "8 ounces shredded duck confit leg and thigh (optional)"
       ],
       readyInMinutes: 45,
-      servings: 4
+      servings: 4,
+      apiId: 635161,
     },
     {
       title: "Butternut Squash Frittata",
@@ -83,7 +84,8 @@ async function seed() {
         "somebell pepper"
       ],
       servings: 2,
-      readyInMinutes: 45
+      readyInMinutes: 45,
+      apiId: 636589,
     },
     {
       title: "Chocolatey Overnight Oats with Strawberries",
@@ -102,8 +104,9 @@ async function seed() {
         "3 large strawberries"
       ],
       servings: 1,
-      readyInMinutes: 45
-    }
+      readyInMinutes: 45,
+      apiId: 639303,
+    },
   ];
 
   const food = [
