@@ -24,14 +24,13 @@ router.post("/", async (req, res, next) => {
     const user = await User.findByPk(req.body.userId);
     const name = req.body.food;
     const shelfLife = req.body.shelfLife;
-
-    const foodItem = await User.createFoodItem(name);
+    const imageUrl = req.body.imageUrl;
+    const foodItem = await User.createFoodItem(name, imageUrl);
     const userFoodItem = await UserFood.createFoodItem(
       foodItem.id,
       user.id,
       shelfLife
     );
-
     res.json(userFoodItem);
   } catch (err) {
     next(err);
@@ -56,7 +55,7 @@ router.get("/:foodId", async (req, res, next) => {
 // Delete specific food from user
 router.delete("/:foodId", async (req, res, next) => {
   try {
-    const foodId = req.params.foodId;
+    const foodId = req.query.foodId;
     const user = await User.findByPk(req.query.userId);
     await user.removeFood(foodId);
     res.sendStatus(204);
