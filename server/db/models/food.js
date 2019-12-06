@@ -42,11 +42,9 @@ User.getAllFood = function(userId) {
         include: [{ model: ExpirationDate, attributes: ["life"] }],
         through: {
           where: { status: "Pending" }
-        },
-        attributes: ["id", "name", "imageUrl"]
+        }
       }
     ],
-    attributes: ["id"],
     where: {
       id: userId
     }
