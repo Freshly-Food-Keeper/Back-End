@@ -1,9 +1,9 @@
-const router = require('express').Router();
-const { User, UserFood } = require('../db/models');
-const { getFoodArray } = require('../utils');
+const router = require("express").Router();
+const { User, UserFood } = require("../db/models");
+const { getFoodArray } = require("../utils");
 
 // Get all foods for a given user id
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const userId = req.query.userId;
   try {
     const allFood = await User.getAllFood(userId);
@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     if (foodArr) {
       res.json(foodArr);
     } else {
-      res.send('No items found! Please add an item to your inventory');
+      res.send("No items found! Please add an item to your inventory");
     }
   } catch (err) {
     next(err);
@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // Add new food for user, and check if food exists in Food model. If not, create
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.body.userId);
     const name = req.body.food;
@@ -39,14 +39,14 @@ router.post('/', async (req, res, next) => {
 });
 
 // Get specific food for user
-router.get('/:foodId', async (req, res, next) => {
+router.get("/:foodId", async (req, res, next) => {
   try {
     const foodId = req.params.foodId;
     const food = await User.getFoodById(foodId);
     if (food) {
       res.json(food);
     } else {
-      res.status(404).send('The item could not be retrieved');
+      res.status(404).send("The item could not be retrieved");
     }
   } catch (err) {
     next(err);
@@ -54,7 +54,7 @@ router.get('/:foodId', async (req, res, next) => {
 });
 
 // Delete specific food from user
-router.delete('/:foodId', async (req, res, next) => {
+router.delete("/:foodId", async (req, res, next) => {
   try {
     const foodId = req.params.foodId;
     const user = await User.findByPk(req.query.userId);
@@ -66,12 +66,15 @@ router.delete('/:foodId', async (req, res, next) => {
 });
 
 // Update specific food for user
-router.put('/:foodId', async (req, res, next) => {
-  const foodId = req.params.foodId;
-  const userId = req.query.userId;
+router.put("/", async (req, res, next) => {
+  const foodId = req.body.foodId;
+  const userId = req.body.userId;
+  console.log("body", req.body);
+  console.log("update route");
   try {
     const food = await UserFood.findByUser(foodId, userId);
     await food.update(req.body);
+    console.log("food", food);
     res.status(201).json(food);
   } catch (err) {
     next(err);
