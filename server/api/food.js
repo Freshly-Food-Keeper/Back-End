@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, UserFood } = require("../db/models");
+const { User, UserFood, Food } = require("../db/models");
 const { getFoodArray } = require("../utils");
 
 // Get all foods for a given user id
@@ -68,13 +68,31 @@ router.delete("/:foodId", async (req, res, next) => {
 router.put("/", async (req, res, next) => {
   const foodId = req.body.foodId;
   const userId = req.body.userId;
-  console.log("body", req.body);
-  console.log("update route");
   try {
     const food = await UserFood.findByUser(foodId, userId);
     await food.update(req.body);
-    console.log("food", food);
     res.status(201).json(food);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/updateFood", async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    const foodId = req.body.foodId;
+    const user = await User.findByPk(userId);
+    const name = req.body.food;
+    const shelfLife = req.body.shelfLife;
+    const imageUrl = req.body.imageUrl;
+    const foodItem = await User.createFoodItem(name, imageUrl);
+    const userFoodItem = await UserFood.createFoodItem(
+      foodItem.id,
+      user.id,
+      shelfLife
+    );
+    await user.removeFood(foodId);
+    res.json(userFoodItem);
   } catch (err) {
     next(err);
   }
