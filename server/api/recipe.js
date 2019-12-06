@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Recipe } = require('../db/models');
+const { User, Recipe, UserRecipe } = require('../db/models');
 
 // Get all recipes for a given user id
 router.get('/', async (req, res, next) => {
@@ -49,11 +49,16 @@ router.post('/', async (req, res, next) => {
 // Delete recipe for user
 router.delete('/', async (req, res, next) => {
   try {
+    console.log(req.query);
     const recipeId = req.query.recipeId;
-
     const user = await User.findByPk(req.query.userId);
 
-    await user.removeRecipe(recipeId);
+    await UserRecipe.destroy({
+      where: {
+        userId: user.id,
+        recipeId: recipeId,
+      },
+    });
     res.sendStatus(204);
   } catch (err) {
     next(err);
