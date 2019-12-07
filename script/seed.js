@@ -62,7 +62,7 @@ async function seed() {
       ],
       readyInMinutes: 45,
       servings: 4,
-      apiId: 635161,
+      apiId: 635161
     },
     {
       title: "Butternut Squash Frittata",
@@ -85,7 +85,7 @@ async function seed() {
       ],
       servings: 2,
       readyInMinutes: 45,
-      apiId: 636589,
+      apiId: 636589
     },
     {
       title: "Chocolatey Overnight Oats with Strawberries",
@@ -105,8 +105,8 @@ async function seed() {
       ],
       servings: 1,
       readyInMinutes: 45,
-      apiId: 639303,
-    },
+      apiId: 639303
+    }
   ];
 
   const food = [
@@ -189,116 +189,142 @@ async function seed() {
   const user_foods = [
     {
       userId: 3,
-      foodId: 2
+      foodId: 2,
+      shelfLife: 1
     },
     {
       userId: 3,
-      foodId: 4
+      foodId: 4,
+      shelfLife: 3
     },
     {
       userId: 3,
-      foodId: 6
+      foodId: 6,
+      shelfLife: 5
     },
     {
       userId: 3,
-      foodId: 8
+      foodId: 8,
+      shelfLife: 7
     },
     {
       userId: 3,
-      foodId: 10
+      foodId: 10,
+      shelfLife: 10
     },
     {
       userId: 3,
-      foodId: 12
+      foodId: 12,
+      shelfLife: 11
     },
     {
       userId: 1,
-      foodId: 3
+      foodId: 3,
+      shelfLife: 3
     },
     {
       userId: 1,
-      foodId: 5
+      foodId: 5,
+      shelfLife: 1
     },
     {
       userId: 1,
-      foodId: 7
+      foodId: 7,
+      shelfLife: 4
     },
     {
       userId: 1,
-      foodId: 9
+      foodId: 9,
+      shelfLife: 6
     },
     {
       userId: 1,
-      foodId: 11
+      foodId: 11,
+      shelfLife: 7
     },
     {
       userId: 1,
-      foodId: 13
+      foodId: 13,
+      shelfLife: 30
     },
     {
       userId: 2,
       foodId: 1,
+      shelfLife: 25,
       status: "Eaten"
     },
     {
       userId: 2,
       foodId: 2,
+      shelfLife: 22,
       status: "Eaten"
     },
     {
       userId: 2,
       foodId: 3,
+      shelfLife: 15,
       status: "Eaten"
     },
     {
       userId: 2,
       foodId: 4,
+      shelfLife: 5,
       status: "Eaten"
     },
     {
       userId: 2,
       foodId: 5,
+      shelfLife: 8,
       status: "Thrown Away"
     },
     {
       userId: 2,
       foodId: 6,
+      shelfLife: 10,
       status: "Thrown Away"
     },
     {
       userId: 2,
       foodId: 7,
+      shelfLife: 1,
       status: "Thrown Away"
     },
     {
       userId: 2,
       foodId: 8,
+      shelfLife: 1,
       status: "Thrown Away"
     },
     {
       userId: 2,
       foodId: 9,
+      shelfLife: 1,
       status: "Thrown Away"
     },
     {
       userId: 2,
-      foodId: 10
+      foodId: 10,
+      shelfLife: 17
     },
     {
       userId: 2,
-      foodId: 11
+      foodId: 11,
+      shelfLife: 18
     },
     {
       userId: 2,
-      foodId: 12
+      foodId: 12,
+      shelfLife: 10
     },
     {
       userId: 2,
-      foodId: 13
+      foodId: 13,
+      shelfLife: 11
     },
     {
       userId: 2,
-      foodId: 14
+      foodId: 14,
+      shelfLife: 4
     }
   ];
 
@@ -2047,7 +2073,7 @@ async function seed() {
       id: 275,
       name: "Cereal or granola bars",
       keywords:
-        "bars,bar,granola bars,granola bar,granola,cereal bars,cereal bar,nutrition bars,nutrition bar,energy bars,energy bar,health bars,health bar,fruit bars,fruit bar,snack bars,snack barsnack,,nut bars,nut bar,seed bars,seed bar,crunchy bars,crunchy bar,breakfast,breakfast bar,breakfast bars",
+        "bars,bar,granola bars,granola bar,granola,cereal bars,cereal bar,nutrition bars,nutrition bar,energy bars,energy bar,health bars,health bar,fruit bars,fruit bar,snack bars,snack barsnack,nut bars,nut bar,seed bars,seed bar,crunchy bars,crunchy bar,breakfast,breakfast bar,breakfast bars",
       life: 365
     },
     {
