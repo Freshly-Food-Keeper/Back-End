@@ -49,10 +49,19 @@ router.post('/', async (req, res, next) => {
 // Delete recipe for user
 router.delete('/', async (req, res, next) => {
   try {
-    console.log(req.query);
-    const recipeId = req.query.recipeId;
-    const user = await User.findByPk(req.query.userId);
+    console.log('req.query in delete route', req.query);
 
+    const apiId = req.query.apiId;
+    const user = await User.findByPk(req.query.userId);
+    console.log('apiId in delete route', apiId);
+    const foundRecipe = await Recipe.findOne({
+      where: {
+        apiId,
+      },
+    });
+
+    const recipeId = foundRecipe.dataValues.id;
+    console.log('recipeId in delete route', recipeId);
     await UserRecipe.destroy({
       where: {
         userId: user.id,
